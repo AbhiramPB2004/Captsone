@@ -1,65 +1,33 @@
-# Python bytecode and general junk
+# Virtual environments
+myenv/
+venv/
+env/
+.env
+
+# Python cache
+__pycache__/
 *.pyc
 *.pyo
 *.pyd
-__pycache__/
-*.so
+.Python
 
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints/
+# Project specific
+*.pkl
+*.db
+*.dat
+yolov8n*.pt
+face_database.pkl
+laptop_faces.db
 
-# OS & Editor junk
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
 .DS_Store
 Thumbs.db
-.vscode/
-*.swp
-
-# Build, distribution
-build/
-dist/
-*.egg-info/
-.eggs/
-
-# Environment files
-.env
-.venv/
-env/
-ENV/
-env.bak/
-venv/
-*.env
-*.myenv
-# Conda environment folder
-# (edit the line below if your conda env folder name differs)
-yolov10/
-face_rec_new/
-
-# Project-specific outputs
-faces_db.pkl
-unknown_faces/
-known_faces/
-*.mp4
-*.avi
-*.mkv
-
-# Model weights and checkpoints
-*.pt
-*.pth
-*.h5
-checkpoints/
-runs/
 
 # Logs
 *.log
-
-# Downloaded datasets (if any)
-datasets/
-
-# User-specific
-*.user
-*.sublime-workspace
-*.sublime-project
-
-# Backup files
-*~
-*.bak
