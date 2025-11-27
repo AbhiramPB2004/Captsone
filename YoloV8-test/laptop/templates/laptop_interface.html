@@ -150,6 +150,13 @@
             max-height: 200px;
             overflow-y: auto;
         }
+
+        .performance-info {
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
@@ -163,7 +170,8 @@
             <p style="color: #666; margin-top: 10px;">
                 <strong>Green boxes:</strong> Recognized faces |
                 <strong>Red boxes:</strong> Unknown faces |
-                <strong>Blue boxes:</strong> Objects
+                <strong>Blue boxes:</strong> Objects |
+                <strong>Yellow boxes:</strong> Face detection only
             </p>
         </div>
 
@@ -220,6 +228,11 @@
                         <strong>Last Update:</strong><br>
                         <span id="last-update" style="font-size: 12px;">Never</span>
                     </div>
+                </div>
+
+                <div class="performance-info">
+                    <strong>⚡ Performance:</strong><br>
+                    <span id="performance-stats">Processing FPS: 0 | Frames: 0</span>
                 </div>
 
                 <div id="detection-counts" class="detection-list" style="margin-top: 15px;"></div>
@@ -334,6 +347,14 @@
                         data.streaming ? '🟢 Active' : '🔴 Stopped';
                     document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
 
+                    // Performance stats
+                    if (data.performance) {
+                        const fps = data.performance.fps ? data.performance.fps.toFixed(1) : '0';
+                        const frames = data.performance.frames_processed || 0;
+                        document.getElementById('performance-stats').textContent =
+                            `Processing FPS: ${fps} | Frames: ${frames}`;
+                    }
+
                     const countsDiv = document.getElementById('detection-counts');
                     if (Object.keys(data.detection_counts).length > 0) {
                         let html = '<h5>👥 Face Detection Counts:</h5>';
@@ -352,8 +373,8 @@
                 });
         }
 
-        // Auto-update stats every 5 seconds
-        setInterval(updateStats, 5000);
+        // Auto-update stats every 3 seconds for better performance monitoring
+        setInterval(updateStats, 3000);
         updateStats();
 
         // Add keyboard shortcuts
